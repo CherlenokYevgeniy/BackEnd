@@ -20,7 +20,10 @@ class Controllertext extends Controller
      */
     public function store(Request $request)
     {
-        
+        $this->validate($request,[
+             'surname' => 'required|integer',   
+        ]);
+
         $usernew = new usernew;
 
         $usernew->name = $request->name;
@@ -31,5 +34,7 @@ class Controllertext extends Controller
         Mail::to('grneade28@gmail.com')->send(new OrderMailer($usernew));
 
         return view('show');
+
+
     }
 }
